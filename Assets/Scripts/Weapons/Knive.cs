@@ -48,7 +48,7 @@ public class Knive : Weapon
         animator = GetComponentInChildren<Animator>();
         body = GetComponent<Rigidbody>();
         speedParticles.Stop();
-        col = GetComponentInChildren<KniveCollliderEvent>();
+        col = trail.gameObject.GetComponent<KniveCollliderEvent>();
 
     }
     private void Update()
