@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     {
         health -= amount;
         PlayHitSound();
+        
         if (health <= 0f)
         {
             Die();
@@ -54,14 +55,16 @@ public class Enemy : MonoBehaviour
     public void PlayHitSound()
     {
         if (Time.time <= resetSoundSource) return;
+        Debug.Log("Enemy, TakeDamage:PlayHitSound");
         var max = hitSound.Length - 1;
         var num = Random.Range(0, max);
         var player = FindObjectOfType<PlayerCombat>().transform;
-        var dist = (player.position - transform.position).magnitude;
+        var dist = (player.position - spine.transform.position).magnitude;
         Debug.Log("PlayHitSound, max : " + max);
         Debug.Log("PlayHitSound, num : " + num);
         Debug.Log("PlayHitSound, dist : " + dist);
-        AudioSource.volume = 100 - Mathf.Clamp(dist * 5f, 1f, 100f);
+        AudioSource.volume = 100 - Mathf.Clamp(dist * 2f, 1f, 100f);
+        Debug.Log("PlayHitSound, volume : " + AudioSource.volume);
         AudioSource.PlayOneShot(hitSound[num]);
         resetSoundSource = Time.time + RESET_SOUND;
     }

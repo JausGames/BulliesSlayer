@@ -45,10 +45,12 @@ public class PlayerCombat : MonoBehaviour
     public void Throw(bool perf, bool canc)
     {
         if (perf) Throw();
+        
     }
 
     void ChangeWeapon()
     {
+        
         var max = weapons.Count;
         var num = FindWeapon(equipedWeapon);
         Debug.Log("FindWeapon, count = " + max);
